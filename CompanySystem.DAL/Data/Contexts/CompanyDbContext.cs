@@ -7,7 +7,9 @@ namespace CompanySystem.BLL.Data.Contexts
     public class CompanyDbContext : DbContext
     {
 
-        public CompanyDbContext
+        public CompanyDbContext(DbContextOptions<CompanyDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -15,11 +17,6 @@ namespace CompanySystem.BLL.Data.Contexts
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
             base.OnModelCreating(modelBuilder);
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Configure the database connection string here
-            optionsBuilder.UseSqlServer("Server=.;Database=CompanySystem.MVC;Trusted_Connection=True;TrustServerCertificate=true");
         }
 
         public DbSet<Department> Departments { get; set; }

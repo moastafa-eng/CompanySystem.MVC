@@ -1,3 +1,7 @@
+using CompanySystem.BLL.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+
 namespace CompanySystem.PL
 {
   public class Program
@@ -9,7 +13,11 @@ namespace CompanySystem.PL
       // Add services to the container.
       builder.Services.AddControllersWithViews();
 
-      var app = builder.Build();
+            builder.Services.AddDbContext<CompanyDbContext>(options => {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            }); ;
+
+            var app = builder.Build();
 
       // Configure the HTTP request pipeline.
       if (!app.Environment.IsDevelopment())
