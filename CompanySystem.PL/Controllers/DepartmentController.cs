@@ -18,13 +18,19 @@ namespace CompanySystem.PL.Controllers
         }
 
         [HttpPost]
-        public IActionResult Crate(CreateDepartmentDto  dto)
+        public IActionResult Create(CreateDepartmentDto  dto)
         {
             if(ModelState.IsValid)
             {
 
             }
 
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult Details (int? id)
+        {
             return View();
         }
     }
